@@ -10,23 +10,33 @@ namespace zsg.ECS.Entities
     public abstract class Entity
     {
 
-        private Dictionary<Constants.ECSTypes.ComponentType, IComponent> components;
-        private EntityId id;
+        protected Dictionary<Constants.ECSTypes.ComponentType, IComponent> components;
+        protected EntityId id;
+        protected Constants.ECSTypes.EntityType entityType;
 
         /// <summary>
         /// returns the unique id for the entity
         /// </summary>
         /// <returns>unique entity id</returns>
-        EntityId GetEntityId()
+        public EntityId GetEntityId()
         {
             return id;
+        }
+
+        /// <summary>
+        /// returns the type of the entity (used to match textures with an entity)
+        /// </summary>
+        /// <returns>the type of the entity</returns>
+        public Constants.ECSTypes.EntityType GetEntityType()
+        {
+            return entityType;
         }
 
         /// <summary>
         /// retrieves a list of components that are on the entity
         /// </summary>
         /// <returns>components on the entity</returns>
-        Dictionary<Constants.ECSTypes.ComponentType,IComponent> GetComponents()
+        public Dictionary<Constants.ECSTypes.ComponentType,IComponent> GetComponents()
         {
             return components;
         }
@@ -35,7 +45,7 @@ namespace zsg.ECS.Entities
         /// updated the entire list of components on the entity
         /// </summary>
         /// <param name="components">new list of components for the entity</param>
-        void UpdateComponents(Dictionary<Constants.ECSTypes.ComponentType,IComponent> components)
+        public void UpdateComponents(Dictionary<Constants.ECSTypes.ComponentType,IComponent> components)
         {
             this.components = components;
         }
@@ -45,7 +55,7 @@ namespace zsg.ECS.Entities
         /// </summary>
         /// <param name="component">component to be adde or updated</param>
         /// <param name="type">type of the component being added or updated (for quick lookuup)</param>
-        void UpdateComponent(IComponent component, Constants.ECSTypes.ComponentType type)
+        public void UpdateComponent(IComponent component, Constants.ECSTypes.ComponentType type)
         {
             if (components.ContainsKey(type))
             {

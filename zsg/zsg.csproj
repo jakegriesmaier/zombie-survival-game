@@ -53,6 +53,7 @@
     <Compile Include="ECS\Entities\EntityManager.cs" />
     <Compile Include="ECS\Entities\Entity.cs" />
     <Compile Include="ECS\EID\EntityId.cs" />
+    <Compile Include="ECS\Entities\PlayerEntity.cs" />
     <Compile Include="ECS\Systems\InputHandlerSystem.cs" />
     <Compile Include="ECS\Systems\ISystem.cs" />
     <Compile Include="ECS\Systems\SystemManager.cs" />

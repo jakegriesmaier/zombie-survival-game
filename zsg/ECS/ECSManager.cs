@@ -27,7 +27,7 @@ namespace zsg.ECS
         public void Initialize()
         {
             List<Entity> initialized = new List<Entity>();
-            entityManager.entities = initialized;
+            //entityManager.entities = initialized;// removed for testing
         }
 
         /// <summary>
@@ -36,12 +36,12 @@ namespace zsg.ECS
         /// <param name="textures">Textures associated with entities</param>
         public void LoadContent(List<Texture2D> textures)
         {
-            throw new NotImplementedException();
+            entityManager.LoadTextures(textures);
         }
 
         public void UnloadContent()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void Update(GameTime gameTime)
@@ -51,7 +51,9 @@ namespace zsg.ECS
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Begin();
             systemManager.Draw(entityManager.entities, spriteBatch);
+            spriteBatch.End();
         }
 
 

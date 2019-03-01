@@ -47,6 +47,7 @@ namespace zsg
 
             // TODO: use this.Content to load your game content here
             List<Texture2D> textures = new List<Texture2D>();
+            textures.Add(Content.Load<Texture2D>("Player"));
             manager.LoadContent(textures);
         }
 
@@ -83,7 +84,6 @@ namespace zsg
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
             // TODO: Add your drawing code here
             manager.Draw(spriteBatch);
 

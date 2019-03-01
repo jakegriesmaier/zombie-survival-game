@@ -30,6 +30,7 @@ namespace zsg.ECS.Systems
             List<ISystem> res = new List<ISystem>();
 
             //TODO add systems here
+            res.Add(new InputHandlerSystem());
 
             return res;
         }

@@ -17,6 +17,12 @@ namespace zsg
                 VelocityComponent,
                 HealthComponent
             }
+
+            public enum EntityType
+            {
+                Player
+            }
+
         }
 
 

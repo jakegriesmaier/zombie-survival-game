@@ -29,7 +29,7 @@ namespace zsg.ECS.Systems
             foreach(var e in entities)
             {
                 pc = (PositionComponent)e.GetComponents()[Constants.ECSTypes.ComponentType.PositionComponent];
-                vc = (VelocityComponent)e.GetComponents()[Constants.ECSTypes.ComponentType.PositionComponent];
+                vc = (VelocityComponent)e.GetComponents()[Constants.ECSTypes.ComponentType.VelocityComponent];
 
                 if (kstate.IsKeyDown(Keys.Up))
                 {
