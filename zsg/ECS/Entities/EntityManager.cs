@@ -8,11 +8,11 @@ namespace zsg.ECS.Entities
 {
     public class EntityManager
     {
-        public List<IEntity> entities;
+        public List<Entity> entities;
 
         public EntityManager()
         {
-            entities = new List<IEntity>();
+            entities = new List<Entity>();
         }
 
     }

@@ -26,7 +26,7 @@ namespace zsg.ECS
         /// </summary>
         public void Initialize()
         {
-            List<IEntity> initialized = new List<IEntity>();
+            List<Entity> initialized = new List<Entity>();
             entityManager.entities = initialized;
         }
 
@@ -46,7 +46,7 @@ namespace zsg.ECS
 
         public void Update(GameTime gameTime)
         {
-            entityManager.entities = systemManager.ExecuteSystems(entityManager.entities);
+            entityManager.entities = systemManager.ExecuteSystems(entityManager.entities, gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)

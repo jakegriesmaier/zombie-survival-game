@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,11 +12,11 @@ namespace zsg.ECS.Systems
     {
         
         /// <summary>
-        /// executes changes to the components of entites (RETURNS ALL OF THE ENTITIES IN THE SYSTEM EVEN IF THEY ARE NOT CHANGED)
+        /// executes changes to the components of entites
         /// </summary>
         /// <param name="entities">entities to be changed</param>
         /// <returns>list of changed entites</returns>
-        List<IEntity> ExecuteSystem(List<IEntity> entities);
+        List<Entity> ExecuteSystem(List<Entity> entities, GameTime gameTime);
 
         /// <summary>
         /// returns a list of the required component types the system

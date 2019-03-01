@@ -39,19 +39,19 @@ namespace zsg.ECS.Systems
         /// </summary>
         /// <param name="entities">list of entities to be updated with game logic</param>
         /// <returns>entities that have been updated by the systems</returns>
-        public List<IEntity> ExecuteSystems(List<IEntity> entities)
+        public List<Entity> ExecuteSystems(List<Entity> entities, GameTime gameTime)
         {
-            List<IEntity> valid;// entities that contain the required components
-            List<IEntity> invalid;// entities that do not contain the required components
+            List<Entity> valid;// entities that contain the required components
+            List<Entity> invalid;// entities that do not contain the required components
             List<Constants.ECSTypes.ComponentType> requiredComponents;
 
             foreach (ISystem sys in systems)
             {               
-                valid = new List<IEntity>();             
-                invalid = new List<IEntity>();
+                valid = new List<Entity>();             
+                invalid = new List<Entity>();
                 requiredComponents = sys.GetRequiredComponentTypes();
 
-                foreach(IEntity e in entities)
+                foreach(Entity e in entities)
                 {
                     if (HasRequiredComponents(requiredComponents, e))
                     {
@@ -62,7 +62,7 @@ namespace zsg.ECS.Systems
                         invalid.Add(e);
                     }
                 }
-                valid = sys.ExecuteSystem(valid);
+                valid = sys.ExecuteSystem(valid, gameTime);
                 entities = invalid.Concat(valid).ToList();
             }
 
@@ -75,14 +75,14 @@ namespace zsg.ECS.Systems
         /// <param name="required">components that are being checked on entity</param>
         /// <param name="entity">entity that the components are being checked on</param>
         /// <returns>true if entity contains all of teh components in required</returns>
-        private bool HasRequiredComponents(List<Constants.ECSTypes.ComponentType> required, IEntity entity)
+        private bool HasRequiredComponents(List<Constants.ECSTypes.ComponentType> required, Entity entity)
         {
             foreach(var req in required)
             {
-                if(!entity.GetComponents().Any(c => c.GetType() == req.GetType()))
+                if (!entity.GetComponents().ContainsKey(req))
                 {
-                    //does not contain the required component
-                    return false; 
+                    //does not have one of the required components
+                    return false;
                 }
             }
             return true;
@@ -93,7 +93,7 @@ namespace zsg.ECS.Systems
         /// </summary>
         /// <param name="entities">list of entities to draw to the screen</param>
         /// <param name="spriteBatch">draws the entites to the game screen</param>
-        public void Draw(List<IEntity> entities, SpriteBatch spriteBatch)
+        public void Draw(List<Entity> entities, SpriteBatch spriteBatch)
         {
             TextureComponent tc;
             PositionComponent pc;
@@ -102,8 +102,8 @@ namespace zsg.ECS.Systems
             {
                 if (HasRequiredComponents(drawComponents, e))
                 {
-                    tc = (TextureComponent) e.GetComponents().First(c => c.GetComponentType() == Constants.ECSTypes.ComponentType.TextureComponent);
-                    pc = (PositionComponent)e.GetComponents().First(c => c.GetComponentType() == Constants.ECSTypes.ComponentType.PositionComponent);
+                    tc = (TextureComponent)e.GetComponents()[Constants.ECSTypes.ComponentType.TextureComponent];
+                    pc = (PositionComponent)e.GetComponents()[Constants.ECSTypes.ComponentType.PositionComponent];
                     vec = new Vector2(tc.texture.Width / 2, tc.texture.Height / 2);
                     spriteBatch.Draw(tc.texture, pc.position, null, Color.White, 0f, vec, Vector2.One, SpriteEffects.None, 0f);
                 }

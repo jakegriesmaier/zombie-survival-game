@@ -51,7 +51,7 @@
     <Compile Include="ECS\ECSManager.cs" />
     <Compile Include="ECS\EID\EntityIdComparer.cs" />
     <Compile Include="ECS\Entities\EntityManager.cs" />
-    <Compile Include="ECS\Entities\IEntity.cs" />
+    <Compile Include="ECS\Entities\Entity.cs" />
     <Compile Include="ECS\EID\EntityId.cs" />
     <Compile Include="ECS\Systems\InputHandlerSystem.cs" />
     <Compile Include="ECS\Systems\ISystem.cs" />
