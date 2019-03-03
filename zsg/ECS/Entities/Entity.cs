@@ -67,5 +67,7 @@ namespace zsg.ECS.Entities
             }
         }
 
+        protected abstract Dictionary<Constants.ECSTypes.ComponentType, Components.IComponent> AddMyComponents();
+
     }
 }

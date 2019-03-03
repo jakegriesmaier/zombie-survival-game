@@ -48,6 +48,7 @@ namespace zsg
             // TODO: use this.Content to load your game content here
             List<Texture2D> textures = new List<Texture2D>();
             textures.Add(Content.Load<Texture2D>("Player"));
+            textures.Add(Content.Load<Texture2D>("Wall"));
             manager.LoadContent(textures);
         }
 

@@ -45,6 +45,7 @@
     <Compile Include="ECS\Components\ComponentManager.cs" />
     <Compile Include="ECS\Components\HealthComponent.cs" />
     <Compile Include="ECS\Components\IComponent.cs" />
+    <Compile Include="ECS\Components\PhysicalStateComponent.cs" />
     <Compile Include="ECS\Components\PositionComponent.cs" />
     <Compile Include="ECS\Components\TextureComponent.cs" />
     <Compile Include="ECS\Components\VelocityComponent.cs" />
@@ -54,6 +55,8 @@
     <Compile Include="ECS\Entities\Entity.cs" />
     <Compile Include="ECS\EID\EntityId.cs" />
     <Compile Include="ECS\Entities\PlayerEntity.cs" />
+    <Compile Include="ECS\Entities\WallEntity.cs" />
+    <Compile Include="ECS\Systems\CollisionHandlerSystem.cs" />
     <Compile Include="ECS\Systems\InputHandlerSystem.cs" />
     <Compile Include="ECS\Systems\ISystem.cs" />
     <Compile Include="ECS\Systems\SystemManager.cs" />

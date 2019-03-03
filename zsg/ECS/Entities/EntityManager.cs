@@ -16,6 +16,7 @@ namespace zsg.ECS.Entities
         {
             entities = new List<Entity>();
             entities.Add(new PlayerEntity());//temp added for testing
+            entities.Add(new WallEntity());//temp added for testing
         }
 
         public void LoadTextures(List<Texture2D> textures)

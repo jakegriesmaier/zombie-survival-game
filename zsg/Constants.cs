@@ -15,12 +15,14 @@ namespace zsg
                 TextureComponent,
                 PositionComponent,
                 VelocityComponent,
-                HealthComponent
+                HealthComponent,
+                PhysicalStateComponent
             }
 
             public enum EntityType
             {
-                Player
+                Player,
+                Wall
             }
 
         }

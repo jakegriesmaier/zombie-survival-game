@@ -11,6 +11,7 @@ namespace zsg.ECS.Components
     {
         public Vector2 position;
 
+
         public PositionComponent()
         {
             position = new Vector2();
