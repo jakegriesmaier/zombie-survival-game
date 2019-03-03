@@ -30,6 +30,7 @@ namespace zsg.ECS.Systems
             {
                 pc = (PositionComponent)e.GetComponents()[Constants.ECSTypes.ComponentType.PositionComponent];
                 vc = (VelocityComponent)e.GetComponents()[Constants.ECSTypes.ComponentType.VelocityComponent];
+                pc.previousPosition = pc.position;//sets the previous position for collision handling
 
                 if (kstate.IsKeyDown(Keys.Up))
                 {

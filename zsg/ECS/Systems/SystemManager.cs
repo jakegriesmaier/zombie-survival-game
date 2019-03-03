@@ -31,6 +31,7 @@ namespace zsg.ECS.Systems
 
             //TODO add systems here
             res.Add(new InputHandlerSystem());
+            res.Add(new CollisionHandlerSystem());
 
             return res;
         }
@@ -105,8 +106,7 @@ namespace zsg.ECS.Systems
                 {
                     tc = (TextureComponent)e.GetComponents()[Constants.ECSTypes.ComponentType.TextureComponent];
                     pc = (PositionComponent)e.GetComponents()[Constants.ECSTypes.ComponentType.PositionComponent];
-                    vec = new Vector2(tc.texture.Width / 2, tc.texture.Height / 2);
-                    spriteBatch.Draw(tc.texture, pc.position, null, Color.White, 0f, vec, Vector2.One, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(tc.texture, pc.position, null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
                 }
             }
         }

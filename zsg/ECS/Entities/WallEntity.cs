@@ -26,6 +26,8 @@ namespace zsg.ECS.Entities
             res.Add(Constants.ECSTypes.ComponentType.PositionComponent, new PositionComponent());
             res.Add(Constants.ECSTypes.ComponentType.TextureComponent, new TextureComponent());
             ((PositionComponent)res[Constants.ECSTypes.ComponentType.PositionComponent]).position = new Vector2(200, 200);//temp for testing
+            ((PositionComponent)res[Constants.ECSTypes.ComponentType.PositionComponent]).previousPosition = new Vector2(200, 200);//temp for testing
+
 
             return res; 
         }
