@@ -22,7 +22,8 @@ namespace zsg
             public enum EntityType
             {
                 Player,
-                Wall
+                Wall,
+                Tile
             }
 
         }

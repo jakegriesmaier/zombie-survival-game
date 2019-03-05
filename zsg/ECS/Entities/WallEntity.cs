@@ -10,9 +10,11 @@ namespace zsg.ECS.Entities
 {
     public class WallEntity : Entity
     {
+        public int location;
 
-        public WallEntity()
+        public WallEntity(int location)
         {
+            this.location = location;
             this.id = new EntityId();
             this.entityType = Constants.ECSTypes.EntityType.Wall;
             this.components = AddMyComponents(); 
@@ -25,8 +27,8 @@ namespace zsg.ECS.Entities
             res.Add(Constants.ECSTypes.ComponentType.PhysicalStateComponent, new PhysicalStateComponent(true));
             res.Add(Constants.ECSTypes.ComponentType.PositionComponent, new PositionComponent());
             res.Add(Constants.ECSTypes.ComponentType.TextureComponent, new TextureComponent());
-            ((PositionComponent)res[Constants.ECSTypes.ComponentType.PositionComponent]).position = new Vector2(200, 200);//temp for testing
-            ((PositionComponent)res[Constants.ECSTypes.ComponentType.PositionComponent]).previousPosition = new Vector2(200, 200);//temp for testing
+            ((PositionComponent)res[Constants.ECSTypes.ComponentType.PositionComponent]).position = new Vector2(200 + (16 * location), 200);//temp for testing
+            ((PositionComponent)res[Constants.ECSTypes.ComponentType.PositionComponent]).previousPosition = new Vector2(200 + (16 * location), 200);//temp for testing
 
 
             return res; 

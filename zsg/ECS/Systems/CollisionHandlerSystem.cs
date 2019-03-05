@@ -25,17 +25,25 @@ namespace zsg.ECS.Systems
             // 2 cases of collisions: 1) collisions with solid objects. 2) Collisions with objects that can cause damage
             for (int i = 0; i < entities.Count; i++)
             {
-                for (int j = i+1; j < entities.Count; j++)
+                PositionComponent pc1 = (PositionComponent)entities[i].GetComponents()[Constants.ECSTypes.ComponentType.PositionComponent];
+                if (pc1.position == pc1.previousPosition)
                 {
-                    //will be no repeating pairs of comparisons and no comparing entity to itself (as long as order is preserved)
-                    PositionComponent pc1 = (PositionComponent)entities[i].GetComponents()[Constants.ECSTypes.ComponentType.PositionComponent];
-                    TextureComponent tc1 = (TextureComponent)entities[i].GetComponents()[Constants.ECSTypes.ComponentType.TextureComponent];
+                    continue;//object did not move so dont need to check if it collided with another object 
+                }
+                TextureComponent tc1 = (TextureComponent)entities[i].GetComponents()[Constants.ECSTypes.ComponentType.TextureComponent];
+                bool e1Solid = ((PhysicalStateComponent)entities[i].GetComponents()[Constants.ECSTypes.ComponentType.PhysicalStateComponent]).solid;
+                for (int j = 0; j < entities.Count; j++)
+                {
+                    if (j == i)
+                    {
+                        continue;//dont need to compare object with itself
+                    }
+                    //will be no repeating pairs of comparisons and no comparing entity to itself (as long as order is preserved)                   
                     PositionComponent pc2 = (PositionComponent)entities[j].GetComponents()[Constants.ECSTypes.ComponentType.PositionComponent];
                     TextureComponent tc2 = (TextureComponent)entities[j].GetComponents()[Constants.ECSTypes.ComponentType.TextureComponent];
                     if (IsCollision(pc1, tc1, pc2, tc2))
                     {
                         // 1) handling collisions for 2 solid entities
-                        bool e1Solid = ((PhysicalStateComponent)entities[i].GetComponents()[Constants.ECSTypes.ComponentType.PhysicalStateComponent]).solid;
                         bool e2Solid = ((PhysicalStateComponent)entities[j].GetComponents()[Constants.ECSTypes.ComponentType.PhysicalStateComponent]).solid;
                         if(e1Solid && e2Solid)
                         {
@@ -73,21 +81,30 @@ namespace zsg.ECS.Systems
             int right = (int)Math.Min(pc1.position.X + tc1.texture.Width, pc2.position.X + tc2.texture.Width);
             int left = (int)Math.Max(pc1.position.X, pc2.position.X);
 
-            // iterates over the box of intersecting pixels
-            for (int y = top; y < bottom; y++)
-            {
-                for (int x = left; x < right; x++)
-                {
-                    Color color1 = colorData1[(x - (int)pc1.position.X) + (y - ((int)pc1.position.Y)) * tc1.texture.Width];
-                    Color color2 = colorData2[(x - (int)pc2.position.X) + (y - ((int)pc2.position.Y)) * tc2.texture.Width];
 
-                    // checks if both pixels are not transparent (=0)
-                    if((color1.A != 0) && (color2.A != 0))
-                    {
-                        return true;// there was a collision
-                    }
+            if((bottom - top) > 0)
+            {
+                if((right - left) > 0)
+                {
+                    return true;
                 }
             }
+
+            // iterates over the box of intersecting pixels
+            //for (int y = top; y < bottom; y++)
+            //{
+            //    for (int x = left; x < right; x++)
+            //    {
+            //        Color color1 = colorData1[(x - (int)pc1.position.X) + (y - ((int)pc1.position.Y)) * tc1.texture.Width];
+            //        Color color2 = colorData2[(x - (int)pc2.position.X) + (y - ((int)pc2.position.Y)) * tc2.texture.Width];
+
+            //        // checks if both pixels are not transparent (=0)
+            //        if((color1.A != 0) && (color2.A != 0))
+            //        {
+            //            return true;// there was a collision
+            //        }
+            //    }
+            //}
                 return false;
         }
 

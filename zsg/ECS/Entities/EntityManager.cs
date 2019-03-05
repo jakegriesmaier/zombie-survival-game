@@ -10,13 +10,46 @@ namespace zsg.ECS.Entities
 {
     public class EntityManager
     {
-        public List<Entity> entities;
+        public List<Entity> entities;//entities in the world
+        public List<TileEntity> tileMap;//world map
 
         public EntityManager()
         {
-            entities = new List<Entity>();
-            entities.Add(new PlayerEntity());//temp added for testing
-            entities.Add(new WallEntity());//temp added for testing
+            entities = AddEntities();
+
+            tileMap = GenerateMap();
+
+        }
+
+        private List<Entity> AddEntities()
+        {
+            var res = new List<Entity>();
+
+            res.Add(new PlayerEntity());//temp added for testing
+            for(int i = 0; i < 64; i++)
+            {
+                res.Add(new WallEntity(i));//temp added for testing
+            }
+
+
+            for(int x = 0; x < 50; x++)
+            {
+                for(int y = 0; y < 30; y++)
+                {
+                    res.Add(new TileEntity(x,y));
+                }
+            }
+
+            return res;
+        }
+
+        private List<TileEntity> GenerateMap()
+        {
+            var res = new List<TileEntity>();
+
+            //TODO add a list tiles to cover the area that needs to be rendered (tiles are 16 x 16)
+
+            return res;
         }
 
         public void LoadTextures(List<Texture2D> textures)

@@ -99,7 +99,6 @@ namespace zsg.ECS.Systems
         {
             TextureComponent tc;
             PositionComponent pc;
-            Vector2 vec;
             foreach(var e in entities)
             {
                 if (HasRequiredComponents(drawComponents, e))

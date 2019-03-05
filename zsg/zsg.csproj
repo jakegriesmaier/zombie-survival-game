@@ -55,6 +55,7 @@
     <Compile Include="ECS\Entities\Entity.cs" />
     <Compile Include="ECS\EID\EntityId.cs" />
     <Compile Include="ECS\Entities\PlayerEntity.cs" />
+    <Compile Include="ECS\Entities\TileEntity.cs" />
     <Compile Include="ECS\Entities\WallEntity.cs" />
     <Compile Include="ECS\Systems\CollisionHandlerSystem.cs" />
     <Compile Include="ECS\Systems\InputHandlerSystem.cs" />
